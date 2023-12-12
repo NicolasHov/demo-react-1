@@ -3,13 +3,20 @@ import Button from './components/Button.jsx'
 import { useState } from 'react' // TODO: check signed import
 
 const App = () => {
-  const [counter, setCounter] = useState(0)
+  const [counterRed, setCounterRed] = useState(0)
+  const [counterBlue, setCounterBlue] = useState(0)
 
-  // fonction qui est déclenchée lorque on clique sur le bouton rouge
-  const handleClick = () => {
-    console.log("on incrémente le compteur")
-    setCounter((counter) => counter + 1) // on lui indique comment calculer la nouvelle valeur avec la précédente
+  // fonction qui est déclenchée lorque on clique sur le bouton
+  const handleClick = (color) => {
+    if (color === 'blue') {
+      setCounterBlue((counterBlue) => counterBlue + 1)
+    }
+    else if (color == 'red')
+      setCounterRed((counterRed) => counterRed + 1) // on lui indique comment calculer la nouvelle valeur avec la précédente
+    // color == 'red' ? setCounterRed((counterRed) => counterRed + 1) : null
+    // color == 'blue' ? setCounterBlue((counterBlue) => counterBlue + 1) : null
   }
+
 
   // Etapes de mise a jour du DOM :
   // 1.changer le state
@@ -22,7 +29,7 @@ const App = () => {
         <Button handleClick={handleClick} color='blue' text='bleue' />
         <Button handleClick={handleClick} color='red' text='rouge' />
       </div>
-      <div>Vous avez cliqué {counter} fois ! </div>
+      <div>Vous avez cliqué {counterRed} fois sur rouge et {counterBlue} fois sur bleu ! </div>
     </>
   )
 }
